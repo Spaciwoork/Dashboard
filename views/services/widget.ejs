@@ -1,0 +1,22 @@
+        <div><%= data.label %></div>
+        <form id="search-form-<%= data.id %>" action="">
+            <div class="ui action input">
+                <input id="search-query-<%= data.id %>" name="search" value="<%= data.search %>">
+                <button class="ui blue button" type="submit">Search</button>
+            </div>
+            <a class="blue ui button" href="/profile?delete=<%= data.id_bdd %>">Delete</a>
+        </form>
+        <div id="weather-widget-<%= data.id %>">
+        </div>
+        <script>
+            $(document).ready(function() {
+                setInterval(function(){
+                    print_search($("#search-query-<%= data.id %>").val(), <%= data.id %>, '<%= data.url %>', '<%= data.id_bdd %>');
+                }, <%= data.frequency %> * 1000);
+                print_search($("#search-query-<%= data.id %>").val(), <%= data.id %>, '<%= data.url %>', '<%= data.id_bdd %>');
+            });
+            $("#search-form-<%= data.id %>").submit(function(){
+                print_search($("#search-query-<%= data.id %>").val(), <%= data.id %>, '<%= data.url %>', '<%= data.id_bdd %>');
+                return (false);
+            });
+        </script>

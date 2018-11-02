@@ -1,0 +1,7 @@
+            <div>
+                <% for(var i=0; i<data.length; i++) {%>
+                    <h2><%= data[i].snippet.topLevelComment.snippet.authorDisplayName %></h2>
+                    <div><img src="<%= data[i].snippet.topLevelComment.snippet.authorProfileImageUrl %>"></div>
+                    <div><%= data[i].snippet.topLevelComment.snippet.textDisplay %></div>
+                <% } %>
+            </div>

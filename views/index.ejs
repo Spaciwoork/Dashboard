@@ -1,0 +1,21 @@
+<% include header %>
+<body>
+<nav>
+    <div class="ui blue inverted menu">
+        <% if (user) { %>
+            <a class="item" href="/auth/logout">Logout</a>
+        <% } else { %>
+            <a class="item" href="/auth/login">Login</a>
+            <% } %>
+        <a class="active item" href="/">Homepage</a>
+        <a class="item" href="/profile">Profile</a>
+    </div>
+</nav>
+<header>
+    <h1>Dashboard</h1>
+</header>
+<main>
+    <p>Bienvenue sur notre Dashboard</p>
+</main>
+</body>
+</html>

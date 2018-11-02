@@ -1,0 +1,46 @@
+<% include header %>
+
+<style>
+    main img{
+        width: 40px;
+        margin-right: 10px;
+        position: relative;
+        top: 12px;
+    }
+    main p{
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+<nav>
+    <div class="ui blue inverted menu">
+        <% if (user) { %>
+            <a class="item" href="/auth/logout">Logout</a>
+        <% } else { %>
+            <a class="item" href="/auth/login">Login</a>
+        <% } %>
+        <a class="item" href="/">Homepage</a>
+        <a class="active item" href="/profile">Profile</a>
+        <a class="item" href="/profile/addWidget">AddWidget</a>
+    </div>
+</nav>
+
+<header>
+    <div class="ui items">
+        <div class="item">
+            <a class="ui tiny image">
+                <img src="<%= user.thumbnail %>" />
+            </a>
+            <div class="content">
+                <a class="header"><%= user.username %></a>
+                <div class="description">
+                    <p>Welcome to your profile ...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

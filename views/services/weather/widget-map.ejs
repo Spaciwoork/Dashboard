@@ -1,0 +1,51 @@
+
+    <style>
+        .widget-wheater{
+            color: white;
+        }
+    </style>
+    <%
+    if (current_hour < 21 && current_hour > 9)
+    {
+    %>
+        <div class="widget-wheater" style="background-image: url(/assets/pictures/sun.png)">
+    <% }
+        else { %>
+            <div class="widget-wheater" style="background-image: url(/assets/pictures/night.png)">
+        <% } %>
+                <% for(var i=0; i<data.length; i++) {%>
+    <%
+    if (i)
+    {
+    %>
+         <h2><%= data[i].date %></h2>
+    <%
+    }else {
+    %>
+         <h2><%= current_time %></h2>
+    <%
+    }
+     %>
+     <div>
+         <h1> <%= data[i].maxtempC %> C </h1>
+     </div>
+     <div>
+         Max temp <%= data[i].maxtempF %> F
+     </div>
+     <div>
+         Min temp <%= data[i].mintempC %> C
+     </div>
+     <div>
+         Min temp <%= data[i].mintempF %> F
+     </div>
+     <div>
+         Total snow <%= data[i].totalSnow_cm %> cm
+     </div>
+     <div>
+         Sunny time <%= data[i].sunHour %> hours
+     </div>
+     <div>
+         Uv index <%= data[i].uvIndex %> uv index
+     </div>
+            <% } %>
+ </div>

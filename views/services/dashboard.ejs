@@ -1,0 +1,100 @@
+<% include ../header %>
+
+<style>
+    main img{
+        width: 40px;
+        margin-right: 10px;
+        position: relative;
+        top: 12px;
+    }
+    main p{
+        display: inline-block;
+    }
+    .allwidget {
+       margin-top: 200px;
+    }
+    .awidget{
+        padding-left: 150px;
+        float: left;
+    }
+    .inner{
+        border: solid cornflowerblue;
+    }
+</style>
+
+<meta charset="utf-8">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<title>Subscribers</title>
+<script>
+    $( document ).ready(function() {
+    });
+    function print_search(search, id, url, id_bdd){
+        error = $.ajax({
+            type: 'GET',
+            url: url,
+            data : {search: search, id_bdd: id_bdd},
+            success: function (data) {
+                $("#weather-widget-" + id).html(data)
+                console.log(data);
+            },
+            error: function(data) {
+                console.log('Error: ' + data);
+            }
+        });
+        return (error);
+    }
+</script>
+
+
+</head>
+    <body>
+            <nav>
+                <div class="ui blue inverted menu">
+                    <% if (user) { %>
+                        <a class="item" href="/auth/logout">Logout</a>
+                    <% } else { %>
+                        <a class="item" href="/auth/login">Login</a>
+                    <% } %>
+                    <a class="item" href="/">Homepage</a>
+                    <a class="active item" href="/profile">Profile</a>
+                    <div class="ui simple dropdown item">
+                        Add Widget
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item" href="/profile?type=weather">Weather</a>
+                            <a class="item" href="/profile?type=video_comments">Youtube video comment</a>
+                            <a class="item" href="/profile?type=latest_video">Youtube Latest video</a>
+                            <a class="item" href="/profile?type=channel_subscriber">Youtube channel subscribers</a>
+                            <a class="item" href="/profile?type=video_views">Youtube video views</a>
+                            <a class="item" href="/profile?type=twitch_subscribers">Twitch subscribers</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <header>
+                <div class="ui items">
+                    <div class="item">
+                        <a class="ui tiny image">
+                            <img src="<%= user.thumbnail %>" />
+                        </a>
+                        <div class="content">
+                            <a class="header"><%= user.username %></a>
+                            <div class="description">
+                                <p>Welcome to your profile ...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="allwidget">
+                <% for(var i=0; i<data.length; i++) {%>
+                    <div class="awidget">
+                        <div class="inner">
+                    <%- include('widget', {data: data[i]}); %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+     </body>
+</html>
